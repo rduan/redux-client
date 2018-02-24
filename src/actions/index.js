@@ -20,6 +20,7 @@ export function signinUser({email, password}) {
 
         dispatch({type: types.AUTH_USER})
         browserHistory.push('/feature');
+        localStorage.setItem('token', res.data.token);
       })
       .catch(()=>{
         dispatch({type: types.UNAUTH_USER})
