@@ -19,17 +19,23 @@ export function signinUser({email, password}) {
         console.log('========= res',res);
 
         dispatch({type: types.AUTH_USER})
-        browserHistory.push('/feature');
         localStorage.setItem('token', res.data.token);
+
+        browserHistory.push('/feature');
       })
       .catch(()=>{
-        dispatch({type: types.UNAUTH_USER})
+        // console.log('+++++++++, catch');
+        dispatch(authError('Bad Login info'));
       });
   //   dispatch()
   }
-
-
-
-
   // if request is bad, show an error
+}
+
+function authError(error) {
+  // console.log('========== authError dispatched')
+  return {
+    type: types.AUTH_ERROR,
+    payload: error
+  }
 }
