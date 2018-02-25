@@ -60,9 +60,9 @@ export function signupUser(props) {
 
         browserHistory.push('/feature');
       })
-      .catch(()=>{
-        // console.log('+++++++++, catch');
-        dispatch(authError('Bad Login info'));
+      .catch((error)=>{
+        console.log('+++++++++, catch', error);
+        dispatch(authError(error));
       });
   }
 
