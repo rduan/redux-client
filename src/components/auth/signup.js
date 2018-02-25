@@ -57,6 +57,18 @@ function validate(formProps) {
   const errors = {};
 
   console.log('========== formProps', formProps);
+  if (!formProps.email) {
+    errors.email = 'please enter an email';
+  }
+
+  if(!formProps.password) {
+    errors.password = ' please enter password';
+  }
+
+  if(!formProps.passwordConfirm) {
+    errors.passwordConfirm = ' please enter confirm password';
+  }
+
   if (formProps.password !== formProps.passwordConfirm) {
     errors.password='password must match'
   }
