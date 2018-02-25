@@ -47,3 +47,26 @@ export function signoutUser() {
     type: types.UNAUTH_USER
   }
 }
+export function signupUser(props) {
+  const {email, password} = props;
+  // localStorage.removeItem('token');
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/signup`, { email, password })
+      .then((res) => {
+        console.log('========= res',res);
+
+        dispatch({type: types.AUTH_USER})
+        localStorage.setItem('token', res.data.token);
+
+        browserHistory.push('/feature');
+      })
+      .catch(()=>{
+        // console.log('+++++++++, catch');
+        dispatch(authError('Bad Login info'));
+      });
+  }
+
+  return {
+    type: types.UNAUTH_USER
+  }
+}
