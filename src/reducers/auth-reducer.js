@@ -7,7 +7,9 @@ export default function(state ={}, action) {
     case types.UNAUTH_USER:
       return { ...state, authenticated: false};
     case types.AUTH_ERROR:
-      return { ...state, error: action.payload }
+      return { ...state, error: action.payload };
+    case types.FETCH_MESSAGE: 
+      return {...state, message: action.payload };
   }
 
   return state;

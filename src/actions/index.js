@@ -70,3 +70,18 @@ export function signupUser(props) {
     type: types.UNAUTH_USER
   }
 }
+
+export function fetchMessage() {
+  return function(dispatch) {
+    axios.get(ROOT_URL, {
+      headers: {authorization: localStorage.getItem('token')}
+    })
+      .then(res => {
+        console.log('========== respon', res);
+        dispatch({
+          type: types.FETCH_MESSAGE,
+          payload: res.data.message,
+        })
+      })
+  }
+}
